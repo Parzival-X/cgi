@@ -4,6 +4,14 @@ import cgitb
 
 cgitb.enable()
 
-print("Content-type: text/plain")
-print()
-print("Your job is to make this work")
+print("Content-Type: text/plain")
+print("")
+
+form = cgi.FieldStorage()
+vals = form.getlist("operand")
+try:
+    result = sum(int(val) for val in vals)
+except Exception:
+    print("Unable to add values. Please try again.")
+
+print("Total is: {}".format(str(result)))
